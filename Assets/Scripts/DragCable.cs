@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+[RequireComponent(typeof(WhatAmI))]
 public class DragCable : MonoBehaviour
 {
-    private bool _drag;                  // True if is being dragged
-    private Rigidbody2D _myRigidbody;    // Reference to the GameObject's Rigidbody2D
-    private bool _wasKinematic;          // Flag indicating whether or not the Ridigbody
     public GameObject childJoint;
     public DragCable otherEnd;
-    
+    public float endDistances = 3;
+    [HideInInspector]
+    public bool canDrag = true;
+
+    private bool _drag;
+    private Rigidbody2D _myRigidbody;
+    private bool _wasKinematic;
+
     void Start()
     {
         _myRigidbody = GetComponent<Rigidbody2D>();
@@ -17,22 +23,33 @@ public class DragCable : MonoBehaviour
 
     void OnMouseDrag()
     {
-        DragFunction();
+        if (canDrag && otherEnd.canDrag)
+        {
+            DragFunction();
+        }
+
+        else if (!otherEnd.canDrag && canDrag && Vector2.Distance(transform.position, otherEnd.transform.position) < endDistances)
+        {
+            DragFunction();
+        }
     }
 
     void FixedUpdate()
     {
-        if (_drag)
-            DragFunction();
-        else
-            transform.rotation = childJoint.transform.rotation;
+        transform.rotation = childJoint.transform.rotation;
     }
-    
+
+    public void HasConnection()
+    {
+        canDrag = false;
+    }
+
     void OnMouseDown()
     {
         _drag = true;
         _myRigidbody.isKinematic = true;
-        if(otherEnd != null)
+
+        if (otherEnd != null && otherEnd.canDrag)
             otherEnd.DisableKinemactic(_drag);
     }
 
@@ -43,6 +60,11 @@ public class DragCable : MonoBehaviour
             _myRigidbody.isKinematic = _wasKinematic;
         }
 
+        if (otherEnd != null && !otherEnd.canDrag && Vector2.Distance(transform.position, otherEnd.transform.position) >= endDistances)
+        {
+            _myRigidbody.isKinematic = false;
+        }
+
         _drag = false;
     }
 
@@ -51,10 +73,9 @@ public class DragCable : MonoBehaviour
         // We are converting a 2D mouse coordinate to 3D
         float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         Vector3 pos_move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
-        // Update GameObject position
+
         _myRigidbody.position = new Vector3(pos_move.x, pos_move.y, pos_move.z);
         transform.rotation = childJoint.transform.rotation;
-        
     }
 
     public void DisableKinemactic(bool isDragging)

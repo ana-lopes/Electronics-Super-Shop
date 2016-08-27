@@ -2,14 +2,25 @@
 using System.Collections;
 
 public class WhatAmI : MonoBehaviour {
+    public ComponentType componennt;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public enum ComponentType
+    {
+        vga,
+        hdmi,
+    }
+
+    public string ComponentName
+    {
+        get
+        {
+            switch (componennt)
+            {
+                case ComponentType.vga:
+                    return "vga";
+                default:
+                    return "";
+            }
+        }
+    }
 }
