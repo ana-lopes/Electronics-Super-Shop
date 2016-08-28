@@ -8,7 +8,7 @@ public class Component : MonoBehaviour {
     public Sprite image;
     public float price;
 
-    private bool _isAvailable = false;
+    public bool _isAvailable;
 
     public enum ComponentType
     {
@@ -36,5 +36,10 @@ public class Component : MonoBehaviour {
     {
         get { return _isAvailable; }
         set { _isAvailable = value; }
+    }
+
+    public float GetPrice()
+    {
+        return price;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShopUIManager : MonoBehaviour {
 
@@ -9,9 +10,9 @@ public class ShopUIManager : MonoBehaviour {
 
 	void Start () {
 
-        //money = PlayerPrefs.GetFloat("money");
+        GameManager.GetAllComponents();
 
-        moneyText.text = money.ToString();
+        moneyText.text = GameManager.GetTotalMoney().ToString();
 	}
 	
 	void Update () {
@@ -22,10 +23,16 @@ public class ShopUIManager : MonoBehaviour {
     {
         money -= price;
         moneyText.text = money.ToString();
+
+        GameManager.SetMoney(money);
     }
 
     public void GoBack()
     {
         PlayerPrefs.SetFloat("money", money);
+        PlayerPrefs.Save();
+        //TODO: guardar info de material comprado para passar à próxima cena
+        SceneManager.LoadScene("store-back");
+        GameManager.GetAllComponents();
     }
 }

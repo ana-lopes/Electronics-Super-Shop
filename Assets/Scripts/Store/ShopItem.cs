@@ -14,32 +14,33 @@ public class ShopItem : MonoBehaviour
     [Header("Item Info")]
     public GameObject itemPrefab;
     private Component component;
-
-    [Header("Other")]
-    public ShopUIManager uiManager;
+    
+    private ShopUIManager _uiManager;
 
     void Awake()
     {
+        _uiManager = GameObject.Find("Canvas").GetComponent<ShopUIManager>();
+    }
 
-        if (itemPrefab != null)
+    public void SetComponent(Component itemComponent)
+    {
+        component = itemComponent;
+
+        nameObject.text = component.ComponentName.ToUpper();
+        descriptionObject.text = component.description;
+        imageObject.sprite = component.image;
+        priceObject.text = component.price.ToString() + " $";
+
+        if(component.IsAvailabe)
         {
-            component = itemPrefab.GetComponentInChildren<Component>();
-            nameObject.text = component.ComponentName.ToUpper();
-            descriptionObject.text = component.description;
-            imageObject.sprite = component.image;
-            priceObject.text = component.price.ToString() + " $";
-
-            if (buyButton != null && component.IsAvailabe)
-            {
-                buyButton.interactable = false;
-                buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
-            }
+            buyButton.interactable = false;
+            buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
         }
     }
 
     public void OnBuy()
     {
-        if (uiManager.money >= component.price)
+        if (_uiManager.money >= component.price)
         {
             if (component != null)
             {
@@ -48,7 +49,9 @@ public class ShopItem : MonoBehaviour
 
             buyButton.interactable = false;
             buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
-            uiManager.UpdateMoney(component.price);
+            _uiManager.UpdateMoney(component.price);
+
+            GameManager.UpdateComponentAvailability(component.ComponentName, true);
         }
     }
 }
