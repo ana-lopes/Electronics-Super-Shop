@@ -16,7 +16,7 @@ public class ShopItem : MonoBehaviour
     private Component component;
 
     [Header("Other")]
-    public UIManager uiManager;
+    public ShopUIManager uiManager;
 
     void Awake()
     {

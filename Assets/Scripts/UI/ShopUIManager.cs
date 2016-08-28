@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class ShopUIManager : MonoBehaviour {
 
     public Text moneyText;
     public float money;
