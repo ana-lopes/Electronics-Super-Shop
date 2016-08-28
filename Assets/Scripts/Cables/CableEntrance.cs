@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(WhatAmI))]
+[RequireComponent(typeof(Component))]
 public class CableEntrance : MonoBehaviour {
 
     public Entrance entranceType;
@@ -15,7 +15,7 @@ public class CableEntrance : MonoBehaviour {
     
     void Awake()
     {
-        _componentName = GetComponent<WhatAmI>().ComponentName;
+        _componentName = GetComponent<Component>().ComponentName;
     }
 	
 	void Update () {
@@ -28,7 +28,7 @@ public class CableEntrance : MonoBehaviour {
 
         if(colliderObj.tag == EntranceType())
         {
-            if(colliderObj.GetComponent<WhatAmI>() != null && colliderObj.GetComponent<WhatAmI>().ComponentName == _componentName)
+            if(colliderObj.GetComponent<Component>() != null && colliderObj.GetComponent<Component>().ComponentName == _componentName)
             {
                 colliderObj.GetComponent<DragCable>().HasConnection();
             }
