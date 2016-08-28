@@ -9,14 +9,7 @@ public class ShopUIManager : MonoBehaviour {
     public float money;
 
 	void Start () {
-
-        GameManager.GetAllComponents();
-
         moneyText.text = GameManager.GetTotalMoney().ToString();
-	}
-	
-	void Update () {
-	
 	}
 
     public void UpdateMoney(float price)
@@ -29,10 +22,7 @@ public class ShopUIManager : MonoBehaviour {
 
     public void GoBack()
     {
-        PlayerPrefs.SetFloat("money", money);
-        PlayerPrefs.Save();
-        //TODO: guardar info de material comprado para passar à próxima cena
-        SceneManager.LoadScene("store-back");
+        SceneManager.LoadScene("store-front");
         GameManager.GetAllComponents();
     }
 }

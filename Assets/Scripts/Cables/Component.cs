@@ -14,6 +14,10 @@ public class Component : MonoBehaviour {
     {
         vga,
         hdmi,
+        rca,
+        dvi,
+        s_video,
+        scart
     }
 
     public string ComponentName
@@ -26,6 +30,14 @@ public class Component : MonoBehaviour {
                     return "vga";
                 case ComponentType.hdmi:
                     return "hdmi";
+                case ComponentType.rca:
+                    return "rca";
+                case ComponentType.dvi:
+                    return "dvi";
+                case ComponentType.s_video:
+                    return "s-video";
+                case ComponentType.scart:
+                    return "scart";
                 default:
                     return "";
             }

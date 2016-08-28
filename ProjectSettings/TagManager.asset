@@ -7,6 +7,8 @@ TagManager:
   - cable-in
   - cable-out
   - entrance
+  - cable
+  - device
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - device
+  - cable
   - 
   - 
   - 

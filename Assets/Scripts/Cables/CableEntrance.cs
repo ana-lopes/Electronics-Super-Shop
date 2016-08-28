@@ -30,6 +30,8 @@ public class CableEntrance : MonoBehaviour {
         {
             if(colliderObj.GetComponent<Component>() != null && colliderObj.GetComponent<Component>().ComponentName == _componentName)
             {
+                //TODO: something saying good job
+                //TODO: something about the game logic that is missing... oh ya send info to montage manager
                 colliderObj.GetComponent<DragCable>().HasConnection();
             }
 

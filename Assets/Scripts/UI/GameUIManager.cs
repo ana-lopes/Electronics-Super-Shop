@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUIManager : MonoBehaviour {
 
@@ -8,12 +9,16 @@ public class GameUIManager : MonoBehaviour {
     private Image _popUpBackground;
 
 	void Start () {
+
+        //TODO: get random briefing
         _briefing = GameObject.Find("Briefing").GetComponent<CanvasGroup>();
         _popUpBackground = GameObject.Find("PopUpBackground").GetComponent<Image>();
 	}
 	
     public void GotItBtn()
     {
+        //TODO: get timer from briefing
+        GameManager.TimerState = 60;
         StartCoroutine(WaitForAnimation(_briefing));
         StartCoroutine(Fade(_popUpBackground));
     }
@@ -31,7 +36,7 @@ public class GameUIManager : MonoBehaviour {
             yield return null;
         }
 
-        //TODO: game start
+        SceneManager.LoadScene("store-back-cables");
         DestroyObject(cg.gameObject);
     }
 

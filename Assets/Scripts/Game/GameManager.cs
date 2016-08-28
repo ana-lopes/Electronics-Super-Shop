@@ -7,6 +7,7 @@ public static class GameManager
     private static Dictionary<string, Component> _componentList = new Dictionary<string, Component>();
     private static float _totalMoney;
     private static List<GameObject> _prefabList;
+    private static float _timerState = 30;
 
     static GameManager()
     {
@@ -68,5 +69,11 @@ public static class GameManager
     public static void UpdateComponentAvailability(string key, bool available)
     {
         _componentList[key].IsAvailabe = available;
+    }
+
+    public static float TimerState
+    {
+        get { return _timerState; }
+        set { _timerState = value; }
     }
 }
