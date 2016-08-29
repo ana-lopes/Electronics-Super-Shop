@@ -10,6 +10,7 @@ public class ShopUIManager : MonoBehaviour {
 
 	void Start () {
         moneyText.text = GameManager.GetTotalMoney().ToString();
+        money = GameManager.GetTotalMoney();
 	}
 
     public void UpdateMoney(float price)

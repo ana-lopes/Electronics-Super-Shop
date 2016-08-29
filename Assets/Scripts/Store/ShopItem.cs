@@ -7,7 +7,8 @@ public class ShopItem : MonoBehaviour
     [Header("Children")]
     public Text nameObject;
     public Image imageObject;
-    public Text descriptionObject;
+    public Image firstEntrance;
+    public Image secondEntrance;
     public Text priceObject;
     public Button buyButton;
 
@@ -27,14 +28,24 @@ public class ShopItem : MonoBehaviour
         component = itemComponent;
 
         nameObject.text = DeviceComponentHelper.ComponentName(component.componentType).ToUpper();
-        descriptionObject.text = component.description;
-        imageObject.sprite = component.image;
         priceObject.text = component.price.ToString() + " $";
+
+        imageObject.sprite = component.image;
+        firstEntrance.sprite = component.firstEntrance;
+
+        if (component.secondEntrance != null)
+        {
+            secondEntrance.sprite = component.secondEntrance;
+        }
+        else
+        {
+            secondEntrance.gameObject.SetActive(false);
+        }
+        
 
         if (component.IsAvailabe)
         {
             buyButton.interactable = false;
-            buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
         }
     }
 
@@ -48,7 +59,6 @@ public class ShopItem : MonoBehaviour
             }
 
             buyButton.interactable = false;
-            buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
             _uiManager.UpdateMoney(component.price);
 
             GameManager.UpdateCableAvailability(DeviceComponentHelper.ComponentName(component.componentType), true);

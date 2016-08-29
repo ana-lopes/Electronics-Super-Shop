@@ -7,6 +7,8 @@ public class DeviceComponent : MonoBehaviour {
     public string description;
     public Sprite image;
     public float price;
+    public Sprite firstEntrance;
+    public Sprite secondEntrance;
 
     public bool _isAvailable;
 

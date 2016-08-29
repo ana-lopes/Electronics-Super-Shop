@@ -886,6 +886,8 @@ MonoBehaviour:
   description: 
   image: {fileID: 21300000, guid: 9b721eb7c323cb247b8bbbdd6d86b7e7, type: 3}
   price: 50
+  firstEntrance: {fileID: 21300000, guid: 0e13b9df6e75e354f826b41835b423c9, type: 3}
+  secondEntrance: {fileID: 0}
   _isAvailable: 0
 --- !u!114 &114000010671442928
 MonoBehaviour:
@@ -902,6 +904,8 @@ MonoBehaviour:
   description: 
   image: {fileID: 21300000, guid: 9b721eb7c323cb247b8bbbdd6d86b7e7, type: 3}
   price: 50
+  firstEntrance: {fileID: 21300000, guid: 0e13b9df6e75e354f826b41835b423c9, type: 3}
+  secondEntrance: {fileID: 0}
   _isAvailable: 0
 --- !u!114 &114000012146619020
 MonoBehaviour:
