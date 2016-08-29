@@ -50,6 +50,7 @@ public class MontageManager : MonoBehaviour
             timer.enabled = false;
 
             GameManager.SetMoney(_moneyMade);
+            GameManager.ResetSelectedItens();
         }
     }
 

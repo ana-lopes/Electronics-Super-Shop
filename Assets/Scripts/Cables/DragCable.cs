@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-[RequireComponent(typeof(Component))]
+[RequireComponent(typeof(DeviceComponent))]
 public class DragCable : MonoBehaviour
 {
     public GameObject childJoint;

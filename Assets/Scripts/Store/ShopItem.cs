@@ -13,7 +13,7 @@ public class ShopItem : MonoBehaviour
 
     [Header("Item Info")]
     public GameObject itemPrefab;
-    private Component component;
+    private DeviceComponent component;
     
     private ShopUIManager _uiManager;
 
@@ -22,7 +22,7 @@ public class ShopItem : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<ShopUIManager>();
     }
 
-    public void SetComponent(Component itemComponent)
+    public void SetComponent(DeviceComponent itemComponent)
     {
         component = itemComponent;
 

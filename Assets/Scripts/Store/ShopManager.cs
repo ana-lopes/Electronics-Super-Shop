@@ -15,7 +15,7 @@ public class ShopManager : MonoBehaviour
             ShopItem shopItem = obj.GetComponent<ShopItem>();
 
             obj.transform.SetParent(storeContainer);
-            shopItem.SetComponent(g.GetComponentInChildren<Component>(true));
+            shopItem.SetComponent(g.GetComponentInChildren<DeviceComponent>(true));
         }
     }
 }

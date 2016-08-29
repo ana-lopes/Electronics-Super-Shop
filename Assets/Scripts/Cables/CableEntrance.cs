@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Component))]
+[RequireComponent(typeof(DeviceComponent))]
 public class CableEntrance : MonoBehaviour {
 
     public Entrance entranceType;
@@ -15,7 +15,7 @@ public class CableEntrance : MonoBehaviour {
     
     void Awake()
     {
-        _componentName = GetComponent<Component>().ComponentName;
+        _componentName = GetComponent<DeviceComponent>().ComponentName;
     }
 	
 	void Update () {
@@ -28,7 +28,7 @@ public class CableEntrance : MonoBehaviour {
 
         if(colliderObj.tag == EntranceType())
         {
-            if(colliderObj.GetComponent<Component>() != null && colliderObj.GetComponent<Component>().ComponentName == _componentName)
+            if(colliderObj.GetComponent<DeviceComponent>() != null && colliderObj.GetComponent<DeviceComponent>().ComponentName == _componentName)
             {
                 //TODO: something saying good job
                 //TODO: something about the game logic that is missing... oh ya send info to montage manager

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Component : MonoBehaviour {
+public class DeviceComponent : MonoBehaviour {
 
     public ComponentType componennt;
     public string description;
@@ -17,7 +17,13 @@ public class Component : MonoBehaviour {
         rca,
         dvi,
         s_video,
-        scart
+        scart,
+        midi,
+        mini_dvi,
+        thunderbolt,
+        trs,
+        trs35mm,
+        xlr
     }
 
     public string ComponentName
@@ -38,6 +44,18 @@ public class Component : MonoBehaviour {
                     return "s-video";
                 case ComponentType.scart:
                     return "scart";
+                case ComponentType.midi:
+                    return "midi";
+                case ComponentType.mini_dvi:
+                    return "mini-dvi";
+                case ComponentType.thunderbolt:
+                    return "thunderbolt";
+                case ComponentType.trs:
+                    return "trs";
+                case ComponentType.trs35mm:
+                    return "trs-35mm";
+                case ComponentType.xlr:
+                    return "xlr";
                 default:
                     return "";
             }
