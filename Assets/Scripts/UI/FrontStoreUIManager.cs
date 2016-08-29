@@ -3,23 +3,42 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameUIManager : MonoBehaviour {
+public class FrontStoreUIManager : MonoBehaviour {
 
-    private CanvasGroup _briefing;
+    public GameObject briefingUI;
+    public Image firstDevice;
+    public Image secondDevice;
+    public Image entrance;
+    public Text price;
+    public Text totalTime;
+    
     private Image _popUpBackground;
+    private Briefing _briefing;
 
 	void Start () {
 
-        //TODO: get random briefing
-        _briefing = GameObject.Find("Briefing").GetComponent<CanvasGroup>();
+        _briefing = GameManager.GetRandomBriefing();
+
         _popUpBackground = GameObject.Find("PopUpBackground").GetComponent<Image>();
+
+        GameManager.GetSetBriefing = _briefing;
+        SetBriefingUI();
 	}
+
+    private void SetBriefingUI()
+    {
+        firstDevice.sprite = _briefing.firstDevice;
+        secondDevice.sprite = _briefing.secondDevice;
+        entrance.sprite = _briefing.entrance;
+        price.text = _briefing.price.ToString();
+        totalTime.text = Mathf.Floor(_briefing.totalTime / 60).ToString("00") + (_briefing.totalTime % 60).ToString(":00");
+    }
 	
     public void GotItBtn()
     {
-        //TODO: get timer from briefing
-        GameManager.TimerState = 60;
-        StartCoroutine(WaitForAnimation(_briefing));
+        GameManager.TimerState = _briefing.totalTime;
+
+        StartCoroutine(WaitForAnimation(briefingUI.GetComponent<CanvasGroup>()));
         StartCoroutine(Fade(_popUpBackground));
     }
 
