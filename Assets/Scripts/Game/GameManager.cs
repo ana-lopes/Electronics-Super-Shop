@@ -8,6 +8,7 @@ public static class GameManager
     private static float _totalMoney;
     private static List<GameObject> _prefabList;
     private static float _timerState = 30;
+    private static Briefing _briefing;
 
     static GameManager()
     {
@@ -69,6 +70,16 @@ public static class GameManager
     public static void UpdateComponentAvailability(string key, bool available)
     {
         _componentList[key].IsAvailabe = available;
+    }
+
+    public static void SetBriefing(Briefing briefing)
+    {
+        _briefing = briefing;
+    }
+
+    public static Briefing GetBriefing()
+    {
+        return _briefing;
     }
 
     public static float TimerState

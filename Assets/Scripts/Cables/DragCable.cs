@@ -36,7 +36,10 @@ public class DragCable : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.rotation = childJoint.transform.rotation;
+        if (_drag)
+        {
+            transform.rotation = childJoint.transform.rotation;
+        }
     }
 
     public void HasConnection()
