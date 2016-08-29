@@ -23,6 +23,6 @@ public class ShopUIManager : MonoBehaviour {
     public void GoBack()
     {
         SceneManager.LoadScene("store-front");
-        GameManager.GetAllComponents();
+        GameManager.GetAllCables();
     }
 }

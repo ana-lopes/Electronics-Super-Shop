@@ -5,9 +5,9 @@ public class CableSpawn : MonoBehaviour {
     
 	void Awake () {
 
-        if(GameManager.GetSelectedItems() != null)
+        if(GameManager.GetSelectedCables() != null)
         {
-            foreach (GameObject g in GameManager.GetSelectedItems())
+            foreach (GameObject g in GameManager.GetSelectedCables())
             {
                 Instantiate(g);
             }

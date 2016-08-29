@@ -9,7 +9,7 @@ public class ShopManager : MonoBehaviour
 
     void Awake()
     {
-        foreach (GameObject g in GameManager.GetAllGameObjectComponents())
+        foreach (GameObject g in GameManager.GetAllCablesGameObjects())
         {
             GameObject obj = (GameObject)Instantiate(storeItemPrefab);
             ShopItem shopItem = obj.GetComponent<ShopItem>();
@@ -17,5 +17,14 @@ public class ShopManager : MonoBehaviour
             obj.transform.SetParent(storeContainer);
             shopItem.SetComponent(g.GetComponentInChildren<DeviceComponent>(true));
         }
+
+        //foreach (GameObject g in GameManager.GetAllDevicesGameObjects())
+        //{
+        //    GameObject obj = (GameObject)Instantiate(storeItemPrefab);
+        //    ShopItem shopItem = obj.GetComponent<ShopItem>();
+
+        //    obj.transform.SetParent(storeContainer);
+        //    shopItem.SetComponent(g.GetComponentInChildren<DeviceComponent>(true));
+        //}
     }
 }

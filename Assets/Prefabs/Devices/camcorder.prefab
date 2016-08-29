@@ -10,11 +10,10 @@ GameObject:
   - 4: {fileID: 418292}
   - 212: {fileID: 21212730}
   - 61: {fileID: 61000010813499562}
-  - 114: {fileID: 114000010619627556}
   - 114: {fileID: 114000013533445314}
   m_Layer: 8
   m_Name: input_RCA
-  m_TagString: Untagged
+  m_TagString: entrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,10 +29,9 @@ GameObject:
   - 212: {fileID: 21214976}
   - 61: {fileID: 61000013216029192}
   - 114: {fileID: 114000012718719188}
-  - 114: {fileID: 114000014022246638}
   m_Layer: 8
   m_Name: input_S-Video_Out
-  m_TagString: Untagged
+  m_TagString: entrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +121,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 21c07c2dda5ad974381952ecc90807f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,7 +154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 16f590351a92c7e4eb3e059584fed1b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -233,22 +231,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.05}
---- !u!114 &114000010619627556
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e05e89039880b3a4fbc5e09361f713af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componennt: 2
-  description: 
-  image: {fileID: 0}
-  price: 0
-  _isAvailable: 0
 --- !u!114 &114000012718719188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a9dc549179ea64d9c1ba7a732878c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentType: 5
   entranceType: 1
 --- !u!114 &114000013533445314
 MonoBehaviour:
@@ -272,20 +255,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a9dc549179ea64d9c1ba7a732878c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entranceType: 0
---- !u!114 &114000014022246638
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e05e89039880b3a4fbc5e09361f713af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componennt: 0
-  description: 
-  image: {fileID: 0}
-  price: 0
-  _isAvailable: 0
+  componentType: 4
+  entranceType: 1

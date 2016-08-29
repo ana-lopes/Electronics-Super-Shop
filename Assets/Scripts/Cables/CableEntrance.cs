@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(DeviceComponent))]
-public class CableEntrance : MonoBehaviour {
-
+public class CableEntrance : MonoBehaviour
+{
+    public DeviceComponentHelper.ComponentType componentType;
     public Entrance entranceType;
     public enum Entrance
     {
@@ -12,23 +12,24 @@ public class CableEntrance : MonoBehaviour {
     }
 
     private string _componentName;
-    
+
     void Awake()
     {
-        _componentName = GetComponent<DeviceComponent>().ComponentName;
+        _componentName = DeviceComponentHelper.ComponentName(componentType);
     }
-	
-	void Update () {
-	
-	}
+
+    void Update()
+    {
+
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         GameObject colliderObj = col.gameObject;
 
-        if(colliderObj.tag == EntranceType())
+        if (colliderObj.tag == EntranceType())
         {
-            if(colliderObj.GetComponent<DeviceComponent>() != null && colliderObj.GetComponent<DeviceComponent>().ComponentName == _componentName)
+            if (colliderObj.GetComponent<DeviceComponent>() != null && DeviceComponentHelper.ComponentName(colliderObj.GetComponent<DeviceComponent>().componentType) == _componentName)
             {
                 //TODO: something saying good job
                 //TODO: something about the game logic that is missing... oh ya send info to montage manager
@@ -44,7 +45,7 @@ public class CableEntrance : MonoBehaviour {
 
     private string EntranceType()
     {
-        switch(entranceType)
+        switch (entranceType)
         {
             case Entrance.inEntrance:
                 return "cable-in";

@@ -5,20 +5,26 @@ using System;
 
 public static class GameManager
 {
-    private static Dictionary<string, DeviceComponent> _componentList = new Dictionary<string, DeviceComponent>();
-    private static float _totalMoney;
-    private static List<GameObject> _prefabList;
-    private static float _timerState = 30;
+    private static Dictionary<string, DeviceComponent> _cableList = new Dictionary<string, DeviceComponent>();
+    private static Dictionary<string, DeviceComponent> _deviceList = new Dictionary<string, DeviceComponent>();
+    
+    private static List<GameObject> _cablePrefabs;
+    private static List<GameObject> _devicePrefabs;
+
     private static Briefing _briefing;
 
     private static GameObject _firsDevicePrefab;
     private static GameObject _secondDevicePrefab;
 
-    private static List<GameObject> _selectedComponents;
+    private static List<GameObject> _selectedCables;
+    private static List<GameObject> _selectedDevices;
+
+    private static float _totalMoney;
+    private static float _timerState = 30;
 
     static GameManager()
     {
-        GetAllComponents();
+        GetAllCables();
         BriefingManager.GetAllBriefings();
     }
 
@@ -32,68 +38,121 @@ public static class GameManager
         return _totalMoney;
     }
 
-    public static List<GameObject> GetSelectedItems()
+    public static List<GameObject> GetSelectedCables()
     {
-        return _selectedComponents;
+        return _selectedCables;
     }
 
-    public static void AddItemSelection(DeviceComponent component)
+    public static List<GameObject> GetSelectedDevices()
     {
-        if(_selectedComponents == null || _selectedComponents.Count == 0)
+        return _selectedDevices;
+    }
+
+    public static void AddCableSelection(DeviceComponent component)
+    {
+        if (_selectedCables == null || _selectedCables.Count == 0)
         {
-            _selectedComponents = new List<GameObject>();
+            _selectedCables = new List<GameObject>();
         }
 
-        foreach (GameObject g in _prefabList)
+        foreach (GameObject g in _cablePrefabs)
         {
-            //TODO: fix this cuz tis bad
-            if (g.name.Contains(component.ComponentName) && !_selectedComponents.Contains(g))
+            if ((DeviceComponentHelper.ComponentName(g.GetComponentInChildren<DeviceComponent>(true).componentType) ==
+                DeviceComponentHelper.ComponentName(component.componentType)) && !_selectedCables.Contains(g))
             {
-                _selectedComponents.Add(g);
+                _selectedCables.Add(g);
                 break;
             }
         }
     }
 
-    private static void SetPrefabList()
+    public static void AddDeviceSelection(DeviceComponent component)
     {
-        _prefabList = new List<GameObject>();
-        _prefabList.AddRange(Resources.LoadAll<GameObject>("Components"));
+        if (_selectedDevices == null || _selectedDevices.Count == 0)
+        {
+            _selectedDevices = new List<GameObject>();
+        }
+
+        foreach (GameObject g in _devicePrefabs)
+        {
+            if ((DeviceComponentHelper.ComponentName(g.GetComponentInChildren<DeviceComponent>(true).componentType) ==
+                DeviceComponentHelper.ComponentName(component.componentType)) && !_selectedDevices.Contains(g))
+            {
+                _selectedDevices.Add(g);
+                break;
+            }
+        }
     }
 
-    public static Dictionary<string, DeviceComponent> GetAllComponents()
+    private static void SetCablePrefabList()
     {
-        SetPrefabList();
+        _cablePrefabs = new List<GameObject>();
+        _cablePrefabs.AddRange(Resources.LoadAll<GameObject>("Components/Cables"));
+    }
 
-        foreach (GameObject g in _prefabList)
+    private static void SetDevicePrefabList()
+    {
+        _devicePrefabs = new List<GameObject>();
+        _devicePrefabs.AddRange(Resources.LoadAll<GameObject>("Components/Devices"));
+    }
+
+    public static Dictionary<string, DeviceComponent> GetAllCables()
+    {
+        SetCablePrefabList();
+
+        foreach (GameObject g in _cablePrefabs)
         {
             DeviceComponent componentComponent = g.GetComponentInChildren<DeviceComponent>(true);
-            if (!_componentList.ContainsKey(componentComponent.ComponentName))
+            if (!_cableList.ContainsKey(DeviceComponentHelper.ComponentName(componentComponent.componentType)))
             {
-                _componentList.Add(componentComponent.ComponentName, componentComponent);
+                _cableList.Add(DeviceComponentHelper.ComponentName(componentComponent.componentType), componentComponent);
             }
         }
 
-        return _componentList;
+        return _cableList;
+    }
+
+    public static Dictionary<string, DeviceComponent> GetAllDevices()
+    {
+        SetDevicePrefabList();
+
+        foreach (GameObject g in _devicePrefabs)
+        {
+            DeviceComponent componentComponent = g.GetComponentInChildren<DeviceComponent>(true);
+            if (!_deviceList.ContainsKey(DeviceComponentHelper.ComponentName(componentComponent.componentType)))
+            {
+                _cableList.Add(DeviceComponentHelper.ComponentName(componentComponent.componentType), componentComponent);
+            }
+        }
+
+        return _deviceList;
     }
 
     public static void ResetSelectedItens()
     {
-        _selectedComponents = new List<GameObject>();
+        _selectedCables = new List<GameObject>();
+        _selectedDevices = new List<GameObject>();
     }
 
-    public static List<GameObject> GetAllGameObjectComponents()
+    public static List<GameObject> GetAllCablesGameObjects()
     {
-        SetPrefabList();
+        SetCablePrefabList();
 
-        return _prefabList;
+        return _cablePrefabs;
     }
 
-    public static List<GameObject> GetAllAvailableComponents()
+    public static List<GameObject> GetAllDeviceGameObjects()
+    {
+        SetDevicePrefabList();
+
+        return _devicePrefabs;
+    }
+
+    public static List<GameObject> GetAllAvailableCables()
     {
         List<GameObject> list = new List<GameObject>();
 
-        foreach (DeviceComponent c in _componentList.Values)
+        foreach (DeviceComponent c in _cableList.Values)
         {
             if (c.IsAvailabe)
             {
@@ -104,14 +163,39 @@ public static class GameManager
         return list;
     }
 
-    public static DeviceComponent GetComponent(string key)
+    public static List<GameObject> GetAllAvailableDevices()
     {
-        return _componentList[key];
+        List<GameObject> list = new List<GameObject>();
+
+        foreach (DeviceComponent c in _deviceList.Values)
+        {
+            if (c.IsAvailabe)
+            {
+                list.Add(c.gameObject);
+            }
+        }
+
+        return list;
     }
 
-    public static void UpdateComponentAvailability(string key, bool available)
+    public static DeviceComponent GetCableComponent(string key)
     {
-        _componentList[key].IsAvailabe = available;
+        return _cableList[key];
+    }
+
+    public static DeviceComponent GetDeviceComponent(string key)
+    {
+        return _deviceList[key];
+    }
+
+    public static void UpdateCableAvailability(string key, bool available)
+    {
+        _cableList[key].IsAvailabe = available;
+    }
+
+    public static void UpdateDeviceAvailability(string key, bool available)
+    {
+        _deviceList[key].IsAvailabe = available;
     }
 
     public static Briefing GetSetBriefing

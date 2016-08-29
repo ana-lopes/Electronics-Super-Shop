@@ -26,7 +26,7 @@ public class MontageManager : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        while (_timeInterval > 0)
+        while (_timeInterval >= 0)
         {
             _timeInterval -= Time.deltaTime;
             timer.text = Mathf.Floor(_timeInterval / 60).ToString("00") + (_timeInterval % 60).ToString(":00");

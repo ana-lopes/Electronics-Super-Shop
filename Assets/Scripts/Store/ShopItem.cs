@@ -14,7 +14,7 @@ public class ShopItem : MonoBehaviour
     [Header("Item Info")]
     public GameObject itemPrefab;
     private DeviceComponent component;
-    
+
     private ShopUIManager _uiManager;
 
     void Awake()
@@ -26,12 +26,12 @@ public class ShopItem : MonoBehaviour
     {
         component = itemComponent;
 
-        nameObject.text = component.ComponentName.ToUpper();
+        nameObject.text = DeviceComponentHelper.ComponentName(component.componentType).ToUpper();
         descriptionObject.text = component.description;
         imageObject.sprite = component.image;
         priceObject.text = component.price.ToString() + " $";
 
-        if(component.IsAvailabe)
+        if (component.IsAvailabe)
         {
             buyButton.interactable = false;
             buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
@@ -51,7 +51,7 @@ public class ShopItem : MonoBehaviour
             buyButton.GetComponentInChildren<Text>().text = "BOUGHT";
             _uiManager.UpdateMoney(component.price);
 
-            GameManager.UpdateComponentAvailability(component.ComponentName, true);
+            GameManager.UpdateCableAvailability(DeviceComponentHelper.ComponentName(component.componentType), true);
         }
     }
 }

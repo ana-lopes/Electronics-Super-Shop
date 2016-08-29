@@ -10,7 +10,7 @@ public class CableManager : MonoBehaviour
 
     void Start()
     {
-        availableComponents = GameManager.GetAllComponents();
+        availableComponents = GameManager.GetAllCables();
 
         SetAvailableCables();
     }
@@ -19,7 +19,7 @@ public class CableManager : MonoBehaviour
     {
         for (int i = 0; i < allCables.Length; i++)
         {
-            if (!availableComponents[allCables[i].ComponentName].IsAvailabe)
+            if (!availableComponents[DeviceComponentHelper.ComponentName(allCables[i].componentType)].IsAvailabe)
             {
                 allCables[i].gameObject.SetActive(false);
             }

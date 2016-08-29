@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 114000011062258452}
   m_Layer: 8
   m_Name: input_RCA
-  m_TagString: Untagged
+  m_TagString: entrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ GameObject:
   - 114: {fileID: 114000012729517594}
   m_Layer: 8
   m_Name: input_Scart
-  m_TagString: Untagged
+  m_TagString: entrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a9dc549179ea64d9c1ba7a732878c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentType: 0
   entranceType: 0
 --- !u!114 &114000011686714204
 MonoBehaviour:
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05e89039880b3a4fbc5e09361f713af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componennt: 2
+  componentType: 0
   description: 
   image: {fileID: 0}
   price: 0
@@ -272,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05e89039880b3a4fbc5e09361f713af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componennt: 5
+  componentType: 0
   description: 
   image: {fileID: 0}
   price: 0
@@ -288,4 +289,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a9dc549179ea64d9c1ba7a732878c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentType: 0
   entranceType: 1
