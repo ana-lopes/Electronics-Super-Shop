@@ -15,7 +15,7 @@ public class ShopManager : MonoBehaviour
             ShopItem shopItem = obj.GetComponent<ShopItem>();
 
             obj.transform.SetParent(storeContainer);
-            shopItem.SetComponent(g.GetComponentInChildren<DeviceComponent>(true));
+            shopItem.SetCable(g.GetComponentInChildren<CableComponent>(true));
         }
 
         //foreach (GameObject g in GameManager.GetAllDevicesGameObjects())

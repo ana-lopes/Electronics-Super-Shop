@@ -9,6 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 464068}
   - 212: {fileID: 21273698}
+  - 61: {fileID: 61000013366077022}
+  - 114: {fileID: 114000010945509510}
   m_Layer: 8
   m_Name: VCR
   m_TagString: device
@@ -233,6 +235,31 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.05}
+--- !u!61 &61000013366077022
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131054}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 0.45}
+--- !u!114 &114000010945509510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021ee7bd98180fd46acb3e22c4d5885e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011062258452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,9 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentType: 0
-  description: 
+  cableName: 
   image: {fileID: 0}
   price: 0
+  firstEntrance: {fileID: 0}
+  secondEntrance: {fileID: 0}
   _isAvailable: 0
 --- !u!114 &114000012420754458
 MonoBehaviour:
@@ -274,9 +303,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentType: 0
-  description: 
+  cableName: 
   image: {fileID: 0}
   price: 0
+  firstEntrance: {fileID: 0}
+  secondEntrance: {fileID: 0}
   _isAvailable: 0
 --- !u!114 &114000012729517594
 MonoBehaviour:

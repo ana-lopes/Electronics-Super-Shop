@@ -29,7 +29,7 @@ public class CableEntrance : MonoBehaviour
 
         if (colliderObj.tag == EntranceType())
         {
-            if (colliderObj.GetComponent<DeviceComponent>() != null && DeviceComponentHelper.ComponentName(colliderObj.GetComponent<DeviceComponent>().componentType) == _componentName)
+            if (colliderObj.GetComponent<CableComponent>() != null && DeviceComponentHelper.ComponentName(colliderObj.GetComponent<CableComponent>().componentType) == _componentName)
             {
                 //TODO: something saying good job
                 //TODO: something about the game logic that is missing... oh ya send info to montage manager

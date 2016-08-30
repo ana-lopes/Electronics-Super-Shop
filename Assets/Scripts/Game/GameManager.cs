@@ -5,7 +5,7 @@ using System;
 
 public static class GameManager
 {
-    private static Dictionary<string, DeviceComponent> _cableList = new Dictionary<string, DeviceComponent>();
+    private static Dictionary<string, CableComponent> _cableList = new Dictionary<string, CableComponent>();
     private static Dictionary<string, DeviceComponent> _deviceList = new Dictionary<string, DeviceComponent>();
     
     private static List<GameObject> _cablePrefabs;
@@ -48,7 +48,7 @@ public static class GameManager
         return _selectedDevices;
     }
 
-    public static void AddCableSelection(DeviceComponent component)
+    public static void AddCableSelection(CableComponent component)
     {
         if (_selectedCables == null || _selectedCables.Count == 0)
         {
@@ -57,7 +57,7 @@ public static class GameManager
 
         foreach (GameObject g in _cablePrefabs)
         {
-            if ((DeviceComponentHelper.ComponentName(g.GetComponentInChildren<DeviceComponent>(true).componentType) ==
+            if ((DeviceComponentHelper.ComponentName(g.GetComponentInChildren<CableComponent>(true).componentType) ==
                 DeviceComponentHelper.ComponentName(component.componentType)) && !_selectedCables.Contains(g))
             {
                 _selectedCables.Add(g);
@@ -75,8 +75,8 @@ public static class GameManager
 
         foreach (GameObject g in _devicePrefabs)
         {
-            if ((DeviceComponentHelper.ComponentName(g.GetComponentInChildren<DeviceComponent>(true).componentType) ==
-                DeviceComponentHelper.ComponentName(component.componentType)) && !_selectedDevices.Contains(g))
+            if ((DeviceComponentHelper.DeviceName(g.GetComponentInChildren<DeviceComponent>(true).deviceType) ==
+                DeviceComponentHelper.DeviceName(component.deviceType)) && !_selectedDevices.Contains(g))
             {
                 _selectedDevices.Add(g);
                 break;
@@ -96,13 +96,13 @@ public static class GameManager
         _devicePrefabs.AddRange(Resources.LoadAll<GameObject>("Components/Devices"));
     }
 
-    public static Dictionary<string, DeviceComponent> GetAllCables()
+    public static Dictionary<string, CableComponent> GetAllCables()
     {
         SetCablePrefabList();
 
         foreach (GameObject g in _cablePrefabs)
         {
-            DeviceComponent componentComponent = g.GetComponentInChildren<DeviceComponent>(true);
+            CableComponent componentComponent = g.GetComponentInChildren<CableComponent>(true);
             if (!_cableList.ContainsKey(DeviceComponentHelper.ComponentName(componentComponent.componentType)))
             {
                 _cableList.Add(DeviceComponentHelper.ComponentName(componentComponent.componentType), componentComponent);
@@ -119,9 +119,9 @@ public static class GameManager
         foreach (GameObject g in _devicePrefabs)
         {
             DeviceComponent componentComponent = g.GetComponentInChildren<DeviceComponent>(true);
-            if (!_deviceList.ContainsKey(DeviceComponentHelper.ComponentName(componentComponent.componentType)))
+            if (!_deviceList.ContainsKey(DeviceComponentHelper.DeviceName(componentComponent.deviceType)))
             {
-                _cableList.Add(DeviceComponentHelper.ComponentName(componentComponent.componentType), componentComponent);
+                _deviceList.Add(DeviceComponentHelper.DeviceName(componentComponent.deviceType), componentComponent);
             }
         }
 
@@ -152,7 +152,7 @@ public static class GameManager
     {
         List<GameObject> list = new List<GameObject>();
 
-        foreach (DeviceComponent c in _cableList.Values)
+        foreach (CableComponent c in _cableList.Values)
         {
             if (c.IsAvailabe)
             {
@@ -178,7 +178,7 @@ public static class GameManager
         return list;
     }
 
-    public static DeviceComponent GetCableComponent(string key)
+    public static CableComponent GetCableComponent(string key)
     {
         return _cableList[key];
     }

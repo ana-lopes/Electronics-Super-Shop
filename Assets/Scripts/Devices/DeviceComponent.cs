@@ -3,8 +3,8 @@ using System.Collections;
 
 public class DeviceComponent : MonoBehaviour {
 
-    public DeviceComponentHelper.ComponentType componentType;
-    public string description;
+    public DeviceComponentHelper.DeviceType deviceType;
+    public string deviceName;
     public Sprite image;
     public float price;
     public Sprite firstEntrance;

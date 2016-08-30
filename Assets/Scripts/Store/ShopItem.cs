@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//THIS WHOLE THING IS A MESS
 public class ShopItem : MonoBehaviour
 {
     [Header("Children")]
@@ -12,38 +13,67 @@ public class ShopItem : MonoBehaviour
     public Text priceObject;
     public Button buyButton;
 
-    [Header("Item Info")]
     public GameObject itemPrefab;
-    private DeviceComponent component;
+    private CableComponent cableComponent;
+    private DeviceComponent deviceComponent;
 
     private ShopUIManager _uiManager;
+
+    private bool _isCable;
 
     void Awake()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<ShopUIManager>();
     }
 
-    public void SetComponent(DeviceComponent itemComponent)
+    public void SetCable(CableComponent itemComponent)
     {
-        component = itemComponent;
+        _isCable = true;
+        cableComponent = itemComponent;
 
-        nameObject.text = DeviceComponentHelper.ComponentName(component.componentType).ToUpper();
-        priceObject.text = component.price.ToString() + " $";
+        nameObject.text = cableComponent.cableName;
+        priceObject.text = cableComponent.price.ToString() + " $";
 
-        imageObject.sprite = component.image;
-        firstEntrance.sprite = component.firstEntrance;
+        imageObject.sprite = cableComponent.image;
+        firstEntrance.sprite = cableComponent.firstEntrance;
 
-        if (component.secondEntrance != null)
+        if (cableComponent.secondEntrance != null)
         {
-            secondEntrance.sprite = component.secondEntrance;
+            secondEntrance.sprite = cableComponent.secondEntrance;
         }
         else
         {
             secondEntrance.gameObject.SetActive(false);
         }
-        
 
-        if (component.IsAvailabe)
+        if (cableComponent.IsAvailabe)
+        {
+            buyButton.interactable = false;
+        }
+    }
+
+    public void SetDevice(DeviceComponent itemComponent)
+    {
+        _isCable = false;
+
+        deviceComponent = itemComponent;
+
+        nameObject.text = deviceComponent.deviceName;
+        priceObject.text = deviceComponent.price.ToString() + " $";
+
+        imageObject.sprite = deviceComponent.image;
+        firstEntrance.sprite = deviceComponent.firstEntrance;
+
+        if (deviceComponent.secondEntrance != null)
+        {
+            secondEntrance.sprite = deviceComponent.secondEntrance;
+        }
+        else
+        {
+            secondEntrance.gameObject.SetActive(false);
+        }
+
+        if (deviceComponent.IsAvailabe)
         {
             buyButton.interactable = false;
         }
@@ -51,17 +81,36 @@ public class ShopItem : MonoBehaviour
 
     public void OnBuy()
     {
-        if (_uiManager.money >= component.price)
+        if (_isCable)
         {
-            if (component != null)
+            if (_uiManager.money >= cableComponent.price)
             {
-                component.IsAvailabe = true;
+                if (cableComponent != null)
+                {
+                    cableComponent.IsAvailabe = true;
+                }
+
+                buyButton.interactable = false;
+                _uiManager.UpdateMoney(cableComponent.price);
+
+                GameManager.UpdateCableAvailability(DeviceComponentHelper.ComponentName(cableComponent.componentType), true);
             }
+        }
 
-            buyButton.interactable = false;
-            _uiManager.UpdateMoney(component.price);
+        else
+        {
+            if (_uiManager.money >= deviceComponent.price)
+            {
+                if (deviceComponent != null)
+                {
+                    deviceComponent.IsAvailabe = true;
+                }
 
-            GameManager.UpdateCableAvailability(DeviceComponentHelper.ComponentName(component.componentType), true);
+                buyButton.interactable = false;
+                _uiManager.UpdateMoney(deviceComponent.price);
+
+                GameManager.UpdateCableAvailability(DeviceComponentHelper.DeviceName(deviceComponent.deviceType), true);
+            }
         }
     }
 }

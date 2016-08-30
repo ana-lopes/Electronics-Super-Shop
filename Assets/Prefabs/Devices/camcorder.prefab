@@ -45,6 +45,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 410338}
   - 212: {fileID: 21228672}
+  - 61: {fileID: 61000013980663232}
+  - 114: {fileID: 114000010404618046}
   m_Layer: 8
   m_Name: camcorder
   m_TagString: device
@@ -231,6 +233,31 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.05}
+--- !u!61 &61000013980663232
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180508}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.52, y: 0.52}
+--- !u!114 &114000010404618046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021ee7bd98180fd46acb3e22c4d5885e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012718719188
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,8 +5,8 @@ using System;
 
 public class CableManager : MonoBehaviour
 {
-    public DeviceComponent[] allCables;
-    public Dictionary<string, DeviceComponent> availableComponents;
+    public CableComponent[] allCables;
+    public Dictionary<string, CableComponent> availableComponents;
 
     void Start()
     {
