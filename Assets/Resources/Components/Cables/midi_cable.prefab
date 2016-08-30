@@ -276,7 +276,7 @@ GameObject:
   - 114: {fileID: 114000012146619020}
   m_Layer: 9
   m_Name: tip_MIDI (1)
-  m_TagString: cable-out
+  m_TagString: cable-in
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,7 +341,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013301580186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6375289, y: 1.006, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -854,9 +854,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.0155288875}
+  m_Offset: {x: -0.0055926815, y: 0.088932216}
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.33894223}
+  m_Size: {x: 0.14899859, y: 0.12782004}
 --- !u!61 &61000013668927954
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -868,9 +868,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.040577054}
+  m_Offset: {x: -0.000000007450581, y: 0.09929979}
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.2888459}
+  m_Size: {x: 0.15179521, y: 0.10149261}
 --- !u!114 &114000010560339470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -883,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentType: 2
-  description: 
+  cableName: 
   image: {fileID: 21300000, guid: 9b721eb7c323cb247b8bbbdd6d86b7e7, type: 3}
   price: 50
   firstEntrance: {fileID: 21300000, guid: 0e13b9df6e75e354f826b41835b423c9, type: 3}
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentType: 2
-  description: 
+  cableName: 
   image: {fileID: 21300000, guid: 9b721eb7c323cb247b8bbbdd6d86b7e7, type: 3}
   price: 50
   firstEntrance: {fileID: 21300000, guid: 0e13b9df6e75e354f826b41835b423c9, type: 3}

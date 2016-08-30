@@ -47,10 +47,17 @@ public class MontageManager : MonoBehaviour
             endGamePopUp.interactable = true;
             endGamePopUp.blocksRaycasts = true;
 
+            _moneyMade = GameManager.numberOfConections * 10;
+
+            endGamePopUp.transform.GetChild(1).GetComponent<Text>().text = "You made like " + _moneyMade + "$";
+
             timer.enabled = false;
+
 
             GameManager.SetMoney(_moneyMade);
             GameManager.ResetSelectedItens();
+
+            GameManager.numberOfConections = 0;
         }
     }
 
@@ -71,7 +78,6 @@ public class MontageManager : MonoBehaviour
     {
         StopAllCoroutines();
         GameManager.TimerState = _timeInterval;
-        //TODO: enviar itens escolhidos
         SceneManager.LoadScene("store-back-devices");
     }
 
@@ -79,7 +85,6 @@ public class MontageManager : MonoBehaviour
     {
         StopAllCoroutines();
         GameManager.TimerState = _timeInterval;
-        //TODO: enviar itens escolhidos
         SceneManager.LoadScene("store-back-building");
     }
 }

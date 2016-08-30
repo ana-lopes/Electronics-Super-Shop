@@ -19,8 +19,10 @@ public static class GameManager
     private static List<GameObject> _selectedCables;
     private static List<GameObject> _selectedDevices;
 
-    private static float _totalMoney;
+    private static float _totalMoney = 10;
     private static float _timerState = 30;
+
+    public static int numberOfConections = 0;
 
     static GameManager()
     {

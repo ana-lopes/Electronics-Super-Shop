@@ -29,10 +29,11 @@ public class CableEntrance : MonoBehaviour
 
         if (colliderObj.tag == EntranceType())
         {
-            if (colliderObj.GetComponent<CableComponent>() != null && DeviceComponentHelper.ComponentName(colliderObj.GetComponent<CableComponent>().componentType) == _componentName)
+            if (colliderObj.GetComponent<DragCable>().canDrag && colliderObj.GetComponent<CableComponent>() != null && DeviceComponentHelper.ComponentName(colliderObj.GetComponent<CableComponent>().componentType) == _componentName)
             {
                 //TODO: something saying good job
                 //TODO: something about the game logic that is missing... oh ya send info to montage manager
+                GameManager.numberOfConections += 1;
                 colliderObj.GetComponent<DragCable>().HasConnection();
             }
 
